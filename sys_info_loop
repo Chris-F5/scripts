@@ -1,0 +1,6 @@
+#/bin/bash
+while :
+do
+    xsetroot -name "$(battery_info) | $(time_info)"
+    sleep 20
+done
