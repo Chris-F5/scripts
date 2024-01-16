@@ -74,9 +74,11 @@ sub new_image {
 new_page();
 while (my $line = <>) {
   chomp $line;
-  next if ($page_empty && $line =~ /^\W*$/);
-  if ($line =~ /^---\W*$/) {
+  next if ($page_empty && $line =~ /^\s*$/);
+  if ($line =~ /^---\s*$/) {
     new_page();
+  } elsif ($line =~ /^!IMAGE_SIZE (\d+)/) {
+    $max_image_height = $1;
   } elsif ($line =~ /^!IMAGE (.+)$/) {
     new_image($1);
   } elsif ($line =~ /^!FONT_SIZE (\d+)$/) {
